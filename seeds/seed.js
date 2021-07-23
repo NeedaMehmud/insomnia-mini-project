@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const sequelize = require('../config/connection');
 const { Traveller, Location, Trip } = require('../models');
 
@@ -12,6 +13,7 @@ const seedDatabase = async () => {
   const locations = await Location.bulkCreate(locationSeedData);
 
   // Create trips at random
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < 10; i++) {
     // Get a random traveller's `id`
     const { id: randomTravellerId } = travellers[
@@ -24,6 +26,7 @@ const seedDatabase = async () => {
     ];
 
     // Create a new trip with random `trip_budget` and `traveller_amount` values, but with ids selected above
+    // eslint-disable-next-line no-await-in-loop
     await Trip.create({
       trip_budget: (Math.random() * 10000 + 1000).toFixed(2),
       traveller_amount: Math.floor(Math.random() * 10) + 1,
